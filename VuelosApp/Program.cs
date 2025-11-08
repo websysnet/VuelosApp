@@ -1,5 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using VuelosApp.Controllers;
 Console.WriteLine(" Bienvenido a VuelosApp");
+
 int opcion = 0;
 do
 {
@@ -22,6 +24,13 @@ do
     {
         case 1:
             Console.WriteLine("Mostrando vuelos disponibles...");
+            VuelosController vuelosController = new VuelosController();
+            List<VuelosApp.Models.Vuelos> vuelos = vuelosController.ObtenerVuelosDisponibles();
+            foreach (var vuelo in vuelos)
+            {
+                Console.WriteLine($"ID: {vuelo.Id}, Origen: {vuelo.Origen}, Destino: {vuelo.Destino}, Salida: {vuelo.FechaSalida}, Llegada: {vuelo.FechaLlegada}, Aerolínea: {vuelo.Aerolinea}, Precio: ${vuelo.Precio}");
+            }
+
             break;
         case 2:
             Console.WriteLine("Buscando vuelo por destino...");
