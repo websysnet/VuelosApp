@@ -66,6 +66,64 @@ namespace VuelosApp.Repositorys
 
             return listaVuelos;
         }
+
+        // Genera una lista de vuelos aleatorios. Algunos destinos pueden repetirse (según probabilidades).
+        public List<Vuelos> GenerarVuelosAleatorios(int cantidad)
+        {
+            var rnd = new Random();
+            var lista = new List<Vuelos>();
+
+            // Listas base de orígenes, destinos y aerolíneas
+            string[] origenes = new[] { "Buenos Aires", "Ciudad de México", "Lima", "Santiago", "Bogotá", "Madrid", "Miami", "Los Ángeles", "Sao Paulo", "Nueva York" };
+            string[] destinos = new[] { "Madrid", "Miami", "Los Ángeles", "Nueva York", "Santiago", "Lima", "Bogotá", "Ciudad de México", "Sao Paulo", "Cancún" };
+            string[] aerolineas = new[] { "Iberia", "Aeroméxico", "LATAM", "American Airlines", "Delta Airlines", "Avianca", "Gol", "Volaris", "United", "VivaAerobus" };
+
+            // Algunos destinos tendrán mayor probabilidad de repetirse (por ejemplo: Madrid, Miami, Los Ángeles)
+            var destinosPesados = new[] { "Madrid", "Miami", "Los Ángeles", "Nueva York", "Santiago" };
+
+            // Empezamos los IDs desde 1000 para diferenciar de la lista de pruebas
+            int nextId = 1000;
+
+            for (int i = 0; i < cantidad; i++)
+            {
+                // Origen aleatorio
+                string origen = origenes[rnd.Next(origenes.Length)];
+
+                // Elegir destino: con 60% de probabilidad elegir de destinosPesados (permitir repetición), 40% elegir del conjunto completo
+                string destino;
+                if (rnd.NextDouble() < 0.6)
+                {
+                    destino = destinosPesados[rnd.Next(destinosPesados.Length)];
+                    // evitar que origen == destino; si ocurre, elegir otro destino distinto
+                    if (destino == origen)
+                    {
+                        destino = destinos.Where(d => d != origen).OrderBy(x => rnd.Next()).First();
+                    }
+                }
+                else
+                {
+                    destino = destinos[rnd.Next(destinos.Length)];
+                    if (destino == origen)
+                    {
+                        destino = destinos.Where(d => d != origen).OrderBy(x => rnd.Next()).First();
+                    }
+                }
+
+                // Fecha de salida aleatoria en los próximos 90 días
+                DateTime fechaSalida = DateTime.Now.Date.AddDays(rnd.Next(1, 90)).AddHours(rnd.Next(0, 24)).AddMinutes(rnd.Next(0, 60));
+                // Duración entre 2 y 14 horas
+                DateTime fechaLlegada = fechaSalida.AddHours(rnd.Next(2, 15)).AddMinutes(rnd.Next(0, 60));
+
+                string aerolinea = aerolineas[rnd.Next(aerolineas.Length)];
+
+                // Precio aleatorio entre 100 y 1200, con dos decimales
+                decimal precio = Math.Round((decimal)(100 + rnd.NextDouble() * 1100), 2);
+
+                lista.Add(new Vuelos(nextId++, origen, destino, fechaSalida, fechaLlegada, aerolinea, precio));
+            }
+
+            return lista;
+        }
         public List<Vuelos> ObtenerVueloPorDestino(string destino)
         {
             List<Vuelos> vuelos = RetornarVuelos();

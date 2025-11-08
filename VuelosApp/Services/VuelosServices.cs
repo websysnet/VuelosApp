@@ -20,5 +20,11 @@ namespace VuelosApp.Services
         {
             return vuelosRepository.ObtenerVueloPorDestino(destino);
         }
+
+        // Expone el generador de vuelos aleatorios
+        public List<Vuelos> GenerarVuelosAleatorios(int cantidad)
+        {
+            return vuelosRepository.GenerarVuelosAleatorios(cantidad);
+        }
     }
 }

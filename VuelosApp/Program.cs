@@ -16,7 +16,8 @@ do
     Console.WriteLine(" 7. Ver aerolíneas asociadas");
     Console.WriteLine(" 8. Contactar soporte");
     Console.WriteLine(" 9. Ver promociones");
-    Console.WriteLine("11- Hablar con el Agente IA Virtual (Próximamente)");
+    Console.WriteLine("11. Generar vuelos aleatorios (prueba)");
+    Console.WriteLine("12- Hablar con el Agente IA Virtual (Próximamente)");
     Console.WriteLine(" 10. Salir");
     Console.Write("Seleccione una opción (1-10): ");
     opcion = int.Parse(Console.ReadLine() ?? "0");
@@ -71,6 +72,25 @@ do
             break;
         case 9:
             Console.WriteLine("Mostrando promociones...");
+            break;
+        case 11:
+            Console.WriteLine("Generar vuelos aleatorios");
+            Console.Write("Ingrese la cantidad de vuelos a generar: ");
+            string input = Console.ReadLine() ?? "0";
+            if (int.TryParse(input, out int cantidad) && cantidad > 0)
+            {
+                VuelosController ctrlGen = new VuelosController();
+                List<VuelosApp.Models.Vuelos> vuelosGen = ctrlGen.GenerarVuelosAleatorios(cantidad);
+                Console.WriteLine($"Se generaron {vuelosGen.Count} vuelos:\n");
+                foreach (var v in vuelosGen)
+                {
+                    Console.WriteLine($"ID: {v.Id}, Origen: {v.Origen}, Destino: {v.Destino}, Salida: {v.FechaSalida}, Llegada: {v.FechaLlegada}, Aerolínea: {v.Aerolinea}, Precio: ${v.Precio}");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Cantidad inválida. Debe ser un número entero mayor que 0.");
+            }
             break;
         case 10:
             Console.WriteLine("Saliendo de la aplicación. ¡Gracias por usar VuelosApp!");

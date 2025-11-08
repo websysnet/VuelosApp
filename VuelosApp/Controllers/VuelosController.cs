@@ -21,5 +21,11 @@ namespace VuelosApp.Controllers
         {
             return vuelosServices.ObtenerVuelosPorDestino(destino);
         }
+
+        // Llama al servicio para generar vuelos aleatorios
+        public List<Vuelos> GenerarVuelosAleatorios(int cantidad)
+        {
+            return vuelosServices.GenerarVuelosAleatorios(cantidad);
+        }
     }
 }
