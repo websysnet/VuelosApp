@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using VuelosApp.Controllers;
+using static VuelosApp.Utils.Tabla;
 Console.WriteLine(" Bienvenido a VuelosApp");
 
 int opcion = 0;
@@ -104,7 +105,7 @@ do
     Console.ReadKey();
 } while (opcion != 0);
 
-static void MostrarTablaAscii(List<VuelosApp.Models.Vuelos> vuelos)
+/* static void MostrarTablaAscii(List<VuelosApp.Models.Vuelos> vuelos)
 {
     if (vuelos == null || vuelos.Count == 0)
     {
@@ -155,4 +156,4 @@ static void MostrarTablaAscii(List<VuelosApp.Models.Vuelos> vuelos)
     Console.ForegroundColor = ConsoleColor.DarkCyan;
     Console.WriteLine(new string('═', totalWidth));
     Console.ResetColor();
-}
+} */
