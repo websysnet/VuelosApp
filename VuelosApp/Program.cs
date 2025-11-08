@@ -16,6 +16,7 @@ do
     Console.WriteLine(" 7. Ver aerolíneas asociadas");
     Console.WriteLine(" 8. Contactar soporte");
     Console.WriteLine(" 9. Ver promociones");
+    Console.WriteLine("11- Hablar con el Agente IA Virtual (Próximamente)");
     Console.WriteLine(" 10. Salir");
     Console.Write("Seleccione una opción (1-10): ");
     opcion = int.Parse(Console.ReadLine() ?? "0");
