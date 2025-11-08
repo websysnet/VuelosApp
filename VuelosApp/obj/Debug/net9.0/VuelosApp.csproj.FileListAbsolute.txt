@@ -1,0 +1,14 @@
+C:\Users\piero\Downloads\NET PRACTICAS\VuelosApp\VuelosApp\bin\Debug\net9.0\VuelosApp.exe
+C:\Users\piero\Downloads\NET PRACTICAS\VuelosApp\VuelosApp\bin\Debug\net9.0\VuelosApp.deps.json
+C:\Users\piero\Downloads\NET PRACTICAS\VuelosApp\VuelosApp\bin\Debug\net9.0\VuelosApp.runtimeconfig.json
+C:\Users\piero\Downloads\NET PRACTICAS\VuelosApp\VuelosApp\bin\Debug\net9.0\VuelosApp.dll
+C:\Users\piero\Downloads\NET PRACTICAS\VuelosApp\VuelosApp\bin\Debug\net9.0\VuelosApp.pdb
+C:\Users\piero\Downloads\NET PRACTICAS\VuelosApp\VuelosApp\obj\Debug\net9.0\VuelosApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\piero\Downloads\NET PRACTICAS\VuelosApp\VuelosApp\obj\Debug\net9.0\VuelosApp.AssemblyInfoInputs.cache
+C:\Users\piero\Downloads\NET PRACTICAS\VuelosApp\VuelosApp\obj\Debug\net9.0\VuelosApp.AssemblyInfo.cs
+C:\Users\piero\Downloads\NET PRACTICAS\VuelosApp\VuelosApp\obj\Debug\net9.0\VuelosApp.csproj.CoreCompileInputs.cache
+C:\Users\piero\Downloads\NET PRACTICAS\VuelosApp\VuelosApp\obj\Debug\net9.0\VuelosApp.dll
+C:\Users\piero\Downloads\NET PRACTICAS\VuelosApp\VuelosApp\obj\Debug\net9.0\refint\VuelosApp.dll
+C:\Users\piero\Downloads\NET PRACTICAS\VuelosApp\VuelosApp\obj\Debug\net9.0\VuelosApp.pdb
+C:\Users\piero\Downloads\NET PRACTICAS\VuelosApp\VuelosApp\obj\Debug\net9.0\VuelosApp.genruntimeconfig.cache
+C:\Users\piero\Downloads\NET PRACTICAS\VuelosApp\VuelosApp\obj\Debug\net9.0\ref\VuelosApp.dll
