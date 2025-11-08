@@ -1,0 +1,30 @@
+# Ignore build outputs
+**/bin/
+**/obj/
+
+# Visual Studio / VS Code
+.vs/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Logs, database
+*.log
+*.sqlite
+*.db
+
+# Misc
+*.DS_Store
+.env
+
+# Git
+.git/
+.gitignore
+
+# NuGet packages
+**/packages/*
+
+# Publish output (just in case)
+app/publish/

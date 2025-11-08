@@ -49,15 +49,37 @@ dotnet restore
 dotnet run
 ```
 
+
+## � Docker
+Puedes ejecutar VuelosApp fácilmente en cualquier sistema con Docker y Docker Compose:
+
+### 1. Construir y ejecutar con Docker Compose
+```powershell
+docker-compose build
+docker-compose up
+```
+Esto construirá la imagen y abrirá la app en modo interactivo en consola.
+
+### 2. Usar solo Docker
+```powershell
+docker build -t vuelosapp:latest .
+docker run --rm -it --name vuelosapp vuelosapp:latest
+```
+El parámetro `-it` permite la interacción con el menú de la aplicación.
+
+---
+Si tienes Docker Desktop instalado, puedes usar la terminal integrada o cualquier consola compatible.
+
+---
 ## 💡 Uso
-[Aquí se agregarán instrucciones específicas sobre cómo usar la aplicación]
-```
-- Clonar el repo.
-- Instalar sdk .net 9.
-- Dotnet build.
-- Dotnet run.
-- Se abre una terminal de opciones.
-```
+1. Clona el repo.
+2. Instala el SDK .NET 9.
+3. Ejecuta:
+	```powershell
+	dotnet build
+	dotnet run
+	```
+4. Se abrirá una terminal de opciones.
 
 ## 🤝 Contribución
 Las contribuciones son bienvenidas. Por favor, sigue estos pasos:

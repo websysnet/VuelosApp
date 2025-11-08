@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  vuelosapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: vuelosapp:latest
+    container_name: vuelosapp
+    tty: true          # permitir TTY
+    stdin_open: true   # permitir entrada interactiva
+    # El ENTRYPOINT del Dockerfile ejecuta `dotnet VuelosApp.dll` por defecto
+    # Puedes sobrescribir command si lo deseas. Ej: command: ["dotnet", "VuelosApp.dll"]
+    restart: "no"
