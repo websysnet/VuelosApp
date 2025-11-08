@@ -20,7 +20,7 @@ do
     Console.WriteLine("12- Hablar con el Agente IA Virtual (Próximamente)");
     Console.WriteLine(" 10. Salir");
     Console.Write("Seleccione una opción (1-10): ");
-    opcion = int.Parse(Console.ReadLine() ?? "0");
+    opcion = int.Parse(Console.ReadLine() ?? "1");
 
     switch (opcion)
     {
@@ -37,7 +37,7 @@ do
         case 2:
             Console.WriteLine("Buscando vuelo por destino...");
             Console.Write("Ingrese el destino: ");
-            string destino = Console.ReadLine() ?? "";  
+            string destino = Console.ReadLine() ?? "";
             VuelosController vuelosCtrl = new VuelosController();
             List<VuelosApp.Models.Vuelos> vuelosPorDestino = vuelosCtrl.BuscarVuelosPorDestino(destino);
             if (vuelosPorDestino.Count > 0)
@@ -73,6 +73,12 @@ do
         case 9:
             Console.WriteLine("Mostrando promociones...");
             break;
+
+        case 0:
+            Console.WriteLine("Saliendo de la aplicación. ¡Gracias por usar VuelosApp!");
+            break;
+
+
         case 11:
             Console.WriteLine("Generar vuelos aleatorios");
             Console.Write("Ingrese la cantidad de vuelos a generar: ");
@@ -92,12 +98,14 @@ do
                 Console.WriteLine("Cantidad inválida. Debe ser un número entero mayor que 0.");
             }
             break;
-        case 10:
-            Console.WriteLine("Saliendo de la aplicación. ¡Gracias por usar VuelosApp!");
+
+        case 12:
+            Console.WriteLine("Funcionalidad de Agente IA Virtual próximamente.");
             break;
         default:
             Console.WriteLine("Opción no válida. Por favor, seleccione una opción del 1 al 10.");
             break;
+
     }
     Console.ReadKey();
-} while (opcion != 10);
+} while (opcion != 0);
