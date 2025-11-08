@@ -15,5 +15,10 @@ namespace VuelosApp.Repositorys
             listaVuelos.Add(new Vuelos(104, "Santiago", "Nueva York", new DateTime(2024, 7, 7, 20, 0, 0), new DateTime(2024, 7, 8, 6, 0, 0), "Delta Airlines", 750.00m));
             return listaVuelos;
         }
+        public List<Vuelos> ObtenerVueloPorDestino(string destino)
+        {
+            List<Vuelos> vuelos = RetornarVuelos();
+            return vuelos.Where(v => v.Destino.Equals(destino, StringComparison.OrdinalIgnoreCase)).ToList();
+        }   
     }
 }

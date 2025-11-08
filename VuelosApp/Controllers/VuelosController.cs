@@ -1,20 +1,25 @@
 namespace VuelosApp.Controllers
 {
     using VuelosApp.Models;
-    using VuelosApp.Repositorys;
+    using VuelosApp.Services;
 
     public class VuelosController
     {
-        private VuelosRepository vuelosRepository;
+        private VuelosServices vuelosServices;
 
         public VuelosController()
         {
-            vuelosRepository = new VuelosRepository();
+            vuelosServices = new VuelosServices();
         }
 
         public List<Vuelos> ObtenerVuelosDisponibles()
         {
-            return vuelosRepository.RetornarVuelos();
+            return vuelosServices.RetornarVuelos();
+        }
+
+        public List<Vuelos> BuscarVuelosPorDestino(string destino)
+        {
+            return vuelosServices.ObtenerVuelosPorDestino(destino);
         }
     }
 }

@@ -34,6 +34,21 @@ do
             break;
         case 2:
             Console.WriteLine("Buscando vuelo por destino...");
+            Console.Write("Ingrese el destino: ");
+            string destino = Console.ReadLine() ?? "";  
+            VuelosController vuelosCtrl = new VuelosController();
+            List<VuelosApp.Models.Vuelos> vuelosPorDestino = vuelosCtrl.BuscarVuelosPorDestino(destino);
+            if (vuelosPorDestino.Count > 0)
+            {
+                foreach (var vuelo in vuelosPorDestino)
+                {
+                    Console.WriteLine($"ID: {vuelo.Id}, Origen: {vuelo.Origen}, Destino: {vuelo.Destino}, Salida: {vuelo.FechaSalida}, Llegada: {vuelo.FechaLlegada}, Aerolínea: {vuelo.Aerolinea}, Precio: ${vuelo.Precio}");
+                }
+            }
+            else
+            {
+                Console.WriteLine("No se encontraron vuelos para el destino especificado.");
+            }
             break;
         case 3:
             Console.WriteLine("Reservando vuelo...");
