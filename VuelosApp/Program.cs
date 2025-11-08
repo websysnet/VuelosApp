@@ -1,4 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using VuelosApp.Controllers;
 Console.WriteLine(" Bienvenido a VuelosApp");
 
@@ -28,10 +31,7 @@ do
             Console.WriteLine("Mostrando vuelos disponibles...");
             VuelosController vuelosController = new VuelosController();
             List<VuelosApp.Models.Vuelos> vuelos = vuelosController.ObtenerVuelosDisponibles();
-            foreach (var vuelo in vuelos)
-            {
-                Console.WriteLine($"ID: {vuelo.Id}, Origen: {vuelo.Origen}, Destino: {vuelo.Destino}, Salida: {vuelo.FechaSalida}, Llegada: {vuelo.FechaLlegada}, Aerolínea: {vuelo.Aerolinea}, Precio: ${vuelo.Precio}");
-            }
+            MostrarTablaAscii(vuelos);
 
             break;
         case 2:
@@ -42,10 +42,7 @@ do
             List<VuelosApp.Models.Vuelos> vuelosPorDestino = vuelosCtrl.BuscarVuelosPorDestino(destino);
             if (vuelosPorDestino.Count > 0)
             {
-                foreach (var vuelo in vuelosPorDestino)
-                {
-                    Console.WriteLine($"ID: {vuelo.Id}, Origen: {vuelo.Origen}, Destino: {vuelo.Destino}, Salida: {vuelo.FechaSalida}, Llegada: {vuelo.FechaLlegada}, Aerolínea: {vuelo.Aerolinea}, Precio: ${vuelo.Precio}");
-                }
+                MostrarTablaAscii(vuelosPorDestino);
             }
             else
             {
@@ -88,10 +85,7 @@ do
                 VuelosController ctrlGen = new VuelosController();
                 List<VuelosApp.Models.Vuelos> vuelosGen = ctrlGen.GenerarVuelosAleatorios(cantidad);
                 Console.WriteLine($"Se generaron {vuelosGen.Count} vuelos:\n");
-                foreach (var v in vuelosGen)
-                {
-                    Console.WriteLine($"ID: {v.Id}, Origen: {v.Origen}, Destino: {v.Destino}, Salida: {v.FechaSalida}, Llegada: {v.FechaLlegada}, Aerolínea: {v.Aerolinea}, Precio: ${v.Precio}");
-                }
+                MostrarTablaAscii(vuelosGen);
             }
             else
             {
@@ -109,3 +103,56 @@ do
     }
     Console.ReadKey();
 } while (opcion != 0);
+
+static void MostrarTablaAscii(List<VuelosApp.Models.Vuelos> vuelos)
+{
+    if (vuelos == null || vuelos.Count == 0)
+    {
+        Console.WriteLine("No hay vuelos para mostrar.");
+        return;
+    }
+
+    // Encabezados
+    var headers = new[] { "ID", "Origen", "Destino", "Salida", "Llegada", "Aerolínea", "Precio" };
+
+    // Calcula anchos de columna con valores por defecto
+    int idW = Math.Max(4, vuelos.Max(v => v.Id.ToString().Length));
+    int origenW = Math.Max(6, vuelos.Max(v => v.Origen?.Length ?? 0));
+    int destinoW = Math.Max(7, vuelos.Max(v => v.Destino?.Length ?? 0));
+    int salidaW = 19; // formato "g"
+    int llegadaW = 19;
+    int aeroW = Math.Max(8, vuelos.Max(v => v.Aerolinea?.Length ?? 0));
+    int precioW = 10;
+
+    // Formato de fila
+    string sep = " │ ";
+    string fmt = $" {{0,-{idW}}}{sep}{{1,-{origenW}}}{sep}{{2,-{destinoW}}}{sep}{{3,-{salidaW}}}{sep}{{4,-{llegadaW}}}{sep}{{5,-{aeroW}}}{sep}{{6,{precioW}}}";
+
+    int totalWidth = idW + origenW + destinoW + salidaW + llegadaW + aeroW + precioW + (sep.Length * 6);
+
+    // Cabecera
+    Console.ForegroundColor = ConsoleColor.DarkCyan;
+    Console.WriteLine(new string('═', totalWidth));
+    Console.ForegroundColor = ConsoleColor.Yellow;
+    Console.WriteLine(fmt, headers[0], headers[1], headers[2], headers[3], headers[4], headers[5], headers[6]);
+    Console.ForegroundColor = ConsoleColor.DarkCyan;
+    Console.WriteLine(new string('═', totalWidth));
+
+    // Filas
+    Console.ForegroundColor = ConsoleColor.White;
+    foreach (var v in vuelos)
+    {
+        Console.WriteLine(fmt,
+            v.Id,
+            v.Origen,
+            v.Destino,
+            v.FechaSalida.ToString("g"),
+            v.FechaLlegada.ToString("g"),
+            v.Aerolinea,
+            string.Format("${0:N2}", v.Precio));
+    }
+
+    Console.ForegroundColor = ConsoleColor.DarkCyan;
+    Console.WriteLine(new string('═', totalWidth));
+    Console.ResetColor();
+}
